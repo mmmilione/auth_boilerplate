@@ -5,17 +5,19 @@ import login from "../auth/login.js";
 import recoverPW from "../auth/recoverPW.js";
 import changePW from "../auth/changePW.js";
 import activate from "../auth/activate.js";
+import enquire from "../controllers/enquire.js";
 import { isLogged } from "../mw/auth.js";
 
 const router = express.Router();
 router.use(cors());
 
-router.get('/auth/activate/:id/:lang', activate)
+router.get('/auth/activate/:id/:lang', activate);
 router.post('/auth/register', register);
 router.post('/auth/login', login);
 router.post('/auth/recoverPW', recoverPW);
 router.post('/auth/changePW', isLogged, changePW);
 
+router.post('/api/enquire', enquire);
 router.get('/api/friends', isLogged, async (req, res) => {
     const friends = [
         {id: 1, name: "Mario"},
